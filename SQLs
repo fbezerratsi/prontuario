@@ -1,0 +1,9 @@
+//PARA BUSCAR AS CONSULTAS FEITAS PELO PACIENTE
+
+select count(t.id), p.nome, prof.nome, t.nome, f.num_prontuario from prontuario_consultas as c inner join prontuario_consultas_paciente as cp on c.id=cp.consultas_id
+inner join prontuario_paciente as p on cp.paciente_id=p.id 
+inner join prontuario_consultas_profissionais as  cprof on cprof.consultas_id=c.id
+inner join prontuario_profissional as prof on cprof.profissional_id=prof.id
+inner join prontuario_tipoprofissional as t on prof.tipo_id=t.id
+inner join prontuario_familia as f on f.id=p.familia_id
+where p.id=1 group by t.id;

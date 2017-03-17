@@ -1,0 +1,100 @@
+	{% extends 'prontuario/layout.html' %}
+	{% block title %} Felipe {% endblock %}
+	{% block content %}
+		<!-- {{ request.user }} -->
+
+		<div class="col-md-12">
+			<!-- <div class="well col-md-6">
+				<p>Felipe</p>
+				{{hj}}
+			</div> -->
+			<!-- {{user}} -->
+	    	<div class="table table-responsive">
+        		<table width="100%" id="minhatabela" class="table table-striped table responsive" cellspacing="0" cellpadding="0">
+            		<thead>
+                		<tr>
+                    		<th>ID</th>
+                    		<th>Nome</th>
+                    		<th>Data de Nascimento</th>
+                    		<th>SUS</th>
+                    		<th>Rua</th>
+                    		<th>Situação</th>
+                    		<th class="actions">Ações</th>
+                 		</tr>
+            		</thead>
+            		<tbody>
+            			{% for paciente in pacientes %}
+            				<tr>
+	                    		<td>{{ paciente.id }}</td>
+			                    <td id="nome">{{ paciente.nome }}</td>
+			                    <td>{{ paciente.nascimento }}</td>
+			                    <td>{{ paciente.sus }}</td>
+			                    <td>{{ paciente.familia.endereco.rua }}</td>
+			                    <td>{{ paciente.situacao }}</td>
+			                    <td class="actions">
+			                        <a class="btn btn-success btn-xs" href="{% url 'visualizar_paciente' paciente.id %}"><span class="glyphicon glyphicon-eye-open"></span> Visualizar</a>
+			                        <!-- <a class="btn btn-warning btn-xs" href="#" data-toggle="modal" data-target="#edit-modal"><span class="glyphicon glyphicon-edit" onclick="setaDadosModal0('Felipe')"></span> Editar</a> -->
+			                        <!-- <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal"><span class="glyphicon glyphicon-trash"></span> Excluir</a> -->
+			                        <a class="btn btn-info btn-xs" id="{{ paciente.id }}" data-toggle="modal" onclick="alertar(this.id)" data-target="#consultar-modal" href="#"><span class="glyphicon glyphicon-plus"></span> Consultar</a>
+			                    </td>
+	                		</tr>	
+            			{% endfor %}
+            		</tbody>
+         		</table>
+     		</div>
+
+
+		</div>	
+
+		<div class="container-fluid">
+			<!-- Modal Consultar -->
+			<div class="modal fade" id="consultar-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+			    <div class="modal-dialog" role="document">
+			        <div class="modal-content">
+			            <div class="modal-header">
+			                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+			                <h4 class="modal-title" id="modalLabel">Consultar</h4>
+			            </div>
+			            <form action="{% url 'consulta_update' %}" method="GET" class="form-horizontal" role="form">
+			            	{% csrf_token %}
+				            <div class="modal-body">
+				            	<!-- <label>Profissionais</label>
+				            	{{ label.profissionais }}
+				            	{{ form.profissionais }} -->
+				            	<input type="hidden" class="form-control" id="id_paciente" name="id_paciente">
+				            	<br>
+				            	<label>Consultas Abertas</label>
+				            	<select name="id_consulta" class="selectpicker" data-live-search="true">
+					            		{% for consultas in consultas_do_dia %}
+					            			<option value="{{ consultas.id }}">{{ consultas.id }} # {{ consultas.get_profissionais }}</option>
+					            		{% endfor %}
+				            		
+				            	</select>
+				            	<br>
+				            	<!-- <label>Pacientes</label>
+				            	<select class="selectpicker" data-live-search="true">
+					            		{% for p in pacientes %}
+					            			<option value="{{ p.id }}">{{ p.nome }}</option>
+					            		{% endfor %}
+				            		
+				            	</select> -->
+				            </div>
+				            <div class="modal-footer">
+				                <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Sim</button>
+				                <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
+				            </div>
+			            </form>
+			        </div>
+			    </div>
+			</div>
+		</div>
+		
+
+		<script type="text/javascript">
+			function alertar(id) {
+				document.getElementById('id_paciente').value = id;
+				//alert(id)
+			}
+		</script>
+
+	{% endblock %}

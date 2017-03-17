@@ -1,0 +1,149 @@
+{% extends 'prontuario/layout.html' %}
+{% block title %} Felipe {% endblock %}
+{% block content %}
+
+ <div class="container">
+<!--  <h2>Paciente</h2>
+    <hr /> 
+    <br /><br />
+    <div class="table-responsive">
+     <table id="products-table" class="table table-hover table-bordered table-responsive">
+      <tbody>
+        <tr>
+         <th>Nome</th>
+         <th>Sexo</th>
+         <th>CPF</th>
+         <th>RG</th>
+         <th>Telefone</th>
+         <th>Nacimento</th>
+         <th>SUS</th>
+         <th>Responsável</th>
+         <th>Familia</th>
+         <th class="actions">Ações</th>
+        </tr>
+       <tr>
+         <td><input type="text" name="nome" value="{{ paciente.nome }}"></td>
+         <td>
+          <select name="sexo">
+            {% for p in pacientes %}
+              <option value="{{ paciente.sexo }}" name="sexo">{{ p }}</option>
+            {% endfor %}
+            
+          </select>
+       </td>
+       <td><input type="text" name="cpf" value="{{ paciente.cpf }}"></td>  
+       <td><input type="text" name="rg" value="{{ paciente.rg }}"></td>
+       <td><input type="text" name="telefone" value="{{ paciente.telefone }}"></td>
+       <td><input type="text" name="nascimento" value="{{ paciente.nascimento.day }}/{{ paciente.nascimento.month }}/{{ paciente.nascimento.year }}"></td>
+       <td><input type="text" name="sus" value="{{ paciente.sus }}"></td>
+       <td><input type="text" name="responsavel" value="{{ paciente.responsavel }}"></td>
+       <td><input type="text" name="rg" value="{{ paciente.familia.endereco.rua }}"></td>
+       
+       <td class="actions">
+        <button class="btn btn-large btn-danger" onclick="RemoveTableRow(this)" type="button">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6" style="text-align: left;">
+        <button class="btn btn-large btn-success" onclick="AddTableRow(this)" type="button">Adicionar Funcionário</button>
+      </td>
+    </tr>
+  </tfoot>
+  </table>
+  </div> -->
+
+
+  <div class="col-md-12">
+
+      <table class="table" data-toggle-column="last">
+          <thead>
+            <tr>
+              <th data-breakpoints="xs">ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th data-breakpoints="xs">Job Title</th>
+              <th data-breakpoints="xs sm">Started On</th>
+              <th data-breakpoints="all" data-title="DOB">Date of Birth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-expanded="true">
+              <td>1</td>
+              <td>Dennise</td>
+              <td>Fuhrman</td>
+              <td>High School History Teacher</td>
+              <td>November 8th 2011</td>
+              <td>July 25th 1960</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Elodia</td>
+              <td>Weisz</td>
+              <td>Wallpaperer Helper</td>
+              <td>October 15th 2010</td>
+              <td>March 30th 1982</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Raeann</td>
+              <td>Haner</td>
+              <td>Internal Medicine Nurse Practitioner</td>
+              <td>November 28th 2013</td>
+              <td>February 26th 1966</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Junie</td>
+              <td>Landa</td>
+              <td>Offbearer</td>
+              <td>October 31st 2010</td>
+              <td>March 29th 1966</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Solomon</td>
+              <td>Bittinger</td>
+              <td>Roller Skater</td>
+              <td>December 29th 2011</td>
+              <td>September 22nd 1964</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Bar</td>
+              <td>Lewis</td>
+              <td>Clown</td>
+              <td>November 12th 2012</td>
+              <td>August 4th 1991</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Usha</td>
+              <td>Leak</td>
+              <td>Ships Electronic Warfare Officer</td>
+              <td>August 14th 2012</td>
+              <td>November 20th 1979</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Lorriane</td>
+              <td>Cooke</td>
+              <td>Technical Services Librarian</td>
+              <td>September 21st 2010</td>
+              <td>April 7th 1969</td>
+            </tr>
+          </tbody>
+        </table>
+    
+  </div>
+
+  <!-- <script type="text/javascript">
+      $('.table').footable();
+      // jQuery(function($){
+      //   $('.table').footable();
+      // });
+  </script> -->
+
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>{% block title %} Django Project {% endblock %}</title>
+    
+    
+    <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/jquery.dataTables.min.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/font-awesome.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'styles/bootstrap-select.css' %}">
+
+    <link rel="stylesheet" href="{% static 'footable/css/footable-bootstrap.min.css' %}">
+
+     
+</head>
+<body>
+	<div class="container-fluid">
+			<!-- Menu fixo -->
+			<!-- <div class="navbar navbar-default navbar-fixed-top"> -->
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+		        <div class="container-fluid">
+			        <div class="navbar-header">
+			        	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>
+					        <span class="icon-bar"></span>                        
+					    </button>
+			        	<a class="navbar-brand" href="{% url 'home' %}">Prontuário</a>
+			        </div>
+			        <div class="collapse navbar-collapse" id="myNavbar">
+			        	<ul class="nav navbar-nav">
+			        		<li class="active"><a href="{% url 'home' %}">Home</a></li>
+			        		<li><a href="#">Pacientes</a></li>
+			        		<li class="dropdown">
+		          				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente <span class="caret"></span></a>
+		          				<ul class="dropdown-menu">
+		            				<li class="dropdown-header">Adicionar</li>
+		            				<li><a href="#">Action</a></li>
+							        <li><a href="#">Another action</a></li>
+							        <li><a href="#">Something else here</a></li>
+							        <li role="separator" class="divider"></li>
+							        <li class="dropdown-header">Atualizar</li>
+							        <li><a href="#">Separated link</a></li>
+							        <li role="separator" class="divider"></li>
+							        <li class="dropdown-header">Deletar</li>
+							        <li><a href="#">One more separated link</a></li>
+		          				</ul>
+		        			</li>
+
+			        		<li class="dropdown">
+							    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas
+							    <span class="caret"></span></a>
+							    <ul class="dropdown-menu">
+							    	<li><a href="{% url 'consulta_create' %}">Abrir Consulta</a></li>
+								   	<li><a href="{% url 'consulta' %}">Todas as consultas</a></li>
+						          	<li><a href="{% url 'consulta_do_dia' %}">Consulta do Dia</a></li>
+						          	<li><a href="{% url 'filtrar_consulta' %}">Filtro de Consultas</a></li>
+						        </ul>
+					      	</li>
+			        		
+			        	</ul>
+			        	<ul class="nav navbar-nav navbar-right">
+			        		<li><a href="{% url 'tabela' %}">Tabela</a></li>
+		        			<li>
+		        				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+		        				{% if request.user.is_authenticated %}		
+				        				<b>Bem Vindo {{ request.user.email }} </b>
+				        			{% endif %}<span class="caret"></span></a>
+		          				<ul class="dropdown-menu">
+		            				<li><a href="#">Administrador</a></li>
+		            				<li role="separator" class="divider"></li>
+							        <li><a href="{% url 'logout' %}">Sair</a></li>
+		          				</ul>
+				        	</li>
+			        	</ul>
+			        </div>
+		    	</div>
+		    </div>
+			
+			<!-- Container -->
+		    <div class="container-fluid">
+		    	{% block content %}
+
+			    {% endblock %}
+		    </div>
+
+    </div>
+
+    
+	<script type="text/javascript" src="{% static 'scripts/vendor/jquery.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'scripts/vendor/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'scripts/vendor/jquery.dataTables.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'scripts/vendor/table.js' %}"></script>
+	<script type="text/javascript" src="{% static 'scripts/vendor/funcao.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'scripts/vendor/mascara.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/vendor/code_mascara.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'scripts/vendor/bootstrap-select.js' %}"></script>    
+
+	<script type="text/javascript" src="{% static 'scripts/vendor/jquery-ui.js' %}"></script>
+	<script type="text/javascript" src="{% static 'scripts/vendor/jquery-1.12.4.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'footable/js/footable.min.js' %}"></script>
+</body>
+</html>

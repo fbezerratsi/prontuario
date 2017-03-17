@@ -1,0 +1,23 @@
+{% extends 'prontuario/layout.html' %}
+{% block title %} Felipe {% endblock %}
+{% block content %}
+	<section>
+	{% if request.user.is_authenticated %}
+		<h1>Welcome {{ request.user }}</h1>
+	{% else %}
+		{% if error == True %}
+			<p class="alert alert-danger">Username ou senha INVÁLIDO!</p>
+		{% endif %}
+		<h1>Auth:</h1>
+
+		<form action="/prontuario/auth/" method="POST">
+			{% csrf_token %}
+			Username: <input type="text" name="username"></br>
+			Password: <input type="password" name="password"></br>
+			<input type="submit" name="" value="Entrar">
+		</form>
+		
+	{% endif %}
+	</section>
+
+{% endblock %}

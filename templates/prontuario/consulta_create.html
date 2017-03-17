@@ -1,0 +1,25 @@
+{% extends 'prontuario/layout.html' %}
+{% block title %} Felipe {% endblock %}
+{% block content %}
+	<div class="container">
+		<div class="col-md-6">
+			<div class="panel panel-info">
+				<div class="panel-heading">Abrir Consulta</div>
+				<div class="panel-body">
+					
+					<div class="container">
+						
+						<form method="POST" action="{% url 'abrir_consulta' %}" class="post-form" role="form">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<input type="submit" name="Enviar" class="btn btn-primary">
+						</form>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}

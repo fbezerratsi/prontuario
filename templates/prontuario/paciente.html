@@ -1,0 +1,98 @@
+<!-- -*- coding: utf-8 -*- -->
+{% extends 'prontuario/layout.html' %}
+{% block title %} Felipe {% endblock %}
+{% block content %}
+
+
+	<aside class="aside col-md-4">
+		<div class="panel panel-info">
+		  	<div class="panel-heading">Detalhes</div>
+		  	<div class="panel-body">
+		  		<ul class="list-group">
+		  			<li class="list-group-item">Situação: <span class="badge">{{ paciente.situacao }}</span></li>
+		  			<li class="list-group-item list-group-item-info">Nome: <span class="badge">{{ paciente.nome }}</span></li>
+		  			<li class="list-group-item">Sexo: <span class="badge">{{ paciente.sexo }}</span></li>
+		  			<li class="list-group-item">CPF.: <span class="badge">{{ paciente.cpf }}</li>
+		  			<li class="list-group-item">RG.: <span class="badge">{{ paciente.rg }}</li>
+		  			<li class="list-group-item">Telefone: <span class="badge">{{ paciente.telefone }}</li>
+		  			<li class="list-group-item">Nascimento: <span class="badge">{{ paciente.nascimento }}</li>
+		  			<li class="list-group-item">SUS: <span class="badge">{{ paciente.sus }}</li>
+		  			<li class="list-group-item">Responsável: <span class="badge">{{ paciente.responsavel }}</li>
+		  			<li class="list-group-item">Família: <span class="badge">{{ paciente.familia.num_prontuario }} - {{ paciente.familia.endereco.rua }}</b></li>
+		  		</ul>
+		  		<div class="list-group">
+  					<a href="#" class="list-group-item active">
+    					Endereço
+  					</a>
+  					<a class="list-group-item list-group-item-action">Rua: <b>{{paciente.familia.endereco.rua}}</b></a>
+  					<a class="list-group-item list-group-item-action">Ńº <b>{{paciente.familia.endereco.numero}}</b></a>
+  					<a class="list-group-item list-group-item-action">Bairro: <b>{{paciente.familia.endereco.bairro}}</b></a>
+  					<a class="list-group-item list-group-item-action disabled">CEP.: <b>{{paciente.familia.endereco.cep}}</b></a>
+  					<a class="list-group-item list-group-item-action">Cidade: <b>{{paciente.familia.endereco.cidade}}</b></a>
+  					<a class="list-group-item list-group-item-action">Estado: <b>{{paciente.familia.endereco.estado}}</a>
+				</div>
+		  	</div>
+		</div>
+	</aside>
+	<div class="container-fluid col-md-5">
+		<div class="panel panel-primary">
+		  	<div class="panel-heading">Paciente</div>
+		  	<div class="panel-body">
+		    	
+		  		<form action="" method="POST" class="form-horizontal" role="form">
+					{% csrf_token %}
+					{{ form.as_p }}
+					
+
+					<div class="form-group">
+                                <!-- Button -->                                        
+                        <div class="col-md-offset-3 col-md-9">
+                           	<button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Editar</button>
+                        </div>
+                    </div>
+					
+				</form>
+
+		  	</div>
+		</div>
+	</div>
+	<aside class="aside col-md-3">
+		<div class="panel panel-info">
+		  	<div class="panel-heading">Histórico do Paciente</div>
+		  	<div class="panel-body">
+		  		<div class="list-group">
+		  			{% for count, paciente, prof, tipo in dados2 %}
+
+		  				<a href="#" class="list-group-item">{{ tipo }} <span class="badge">{{ count }}</span></a>
+
+		  			{% endfor %}
+		  			<!-- <li class="list-group-item list-group-item-info">Médico <span class="badge">35</span></li>
+		  			<li class="list-group-item list-group-item-info">Enfermeiro <span class="badge">10</span></li>
+		  			<li class="list-group-item list-group-item-info">Psicólogo <span class="badge">00</span></li>
+		  			<li class="list-group-item list-group-item-info">Nutricionista <span class="badge">01</span></li>
+		  			<li class="list-group-item list-group-item-info">Técnico de Enfermagem <span class="badge">15</span></li> -->
+		  		</div>
+		  	</div>
+		</div>
+	</aside>
+	<aside class="aside col-md-3">
+		<div class="panel panel-danger">
+		  	<div class="panel-heading">Família</div>
+		  	<div class="panel-body">
+		  		<ul class="list-group">
+		  		<h5>Número do Prontuário: {{linha}}</h5>
+		  			{% for prontuario, nome, responsavel in dados3 %}
+		  				{% if responsavel == True %}
+		  					<li class="list-group-item list-group-item-info"><b>Responsável: {{ nome }}</b></li>
+		  				{% else %}
+		  					<li class="list-group-item list-group-item-info">{{ nome }}</li>
+		  				{% endif %}
+		  			{% endfor %}
+		  		</ul>
+
+		  	</div>
+		</div>
+	</aside>
+
+
+{% endblock %}
